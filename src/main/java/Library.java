@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Library{
 
@@ -8,7 +10,6 @@ public class Library{
     public Library(int capacity) {
         this.books = new ArrayList<>();
         this.capacity = capacity;
-
     }
 
     public int bookCount(){
@@ -30,5 +31,18 @@ public class Library{
 
     public void loan(Book book, Borrower borrower){
         borrower.addBook(this.removeBook(book));
+    }
+
+    public Map<String, Integer> countByGenre(){
+        HashMap<String, Integer> result;
+        result = new HashMap<String, Integer>();
+        for (Book book : this.books){
+            if (result.containsKey(book.getGenre())) {
+                result.put(book.getGenre(), (result.get(book.getGenre())) + 1);
+            }else{
+                result.put(book.getGenre(), 1);
+            }
+        }
+        return result;
     }
 }

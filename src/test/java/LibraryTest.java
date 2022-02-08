@@ -1,6 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.HashMap;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -50,5 +52,16 @@ public class LibraryTest {
         library.loan(book, borrower);
         assertEquals(1,library.bookCount());
         assertEquals(2,borrower.bookCount());
+    }
+
+    @Test
+    public void canCountBooksByGenre(){
+        library.addBook(book);
+        library.addBook(book);
+        library.addBook(book);
+        HashMap<String, Integer> expected;
+        expected = new HashMap<>();
+        expected.put("genre1", 3);
+        assertEquals(expected,library.countByGenre());
     }
 }
